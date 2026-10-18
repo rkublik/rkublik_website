@@ -1,2 +1,1 @@
-# rkublik_website
-Personal website files
+Draft website
