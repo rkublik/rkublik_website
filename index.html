@@ -4,13 +4,10 @@
 <head>
     <script type="text/javascript">
         function send_to_page(page) {
-            console.log(page)
             window.location.replace(page)
-
         }
         // check language preference
         var langs = window.navigator.languages;
-        langs = ['en-US']
         for (val of langs) {
             if (val.indexOf('en') >= 0) { send_to_page("en"); break; }
             else if (val.indexOf('fr') >= 0) { send_to_page("fr"); break; }
