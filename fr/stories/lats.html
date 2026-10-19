@@ -1,0 +1,83 @@
+<div>
+
+    <h1>Ne m'attendez pas, je vous rattrape</h1>
+    <p>
+        Les simulations de l'activité électrique dans les cellules nerveuses reposent sur la résolution de grands
+        systèmes
+        d'équations différentielles non linéaires des milliers de fois pour chaque seconde de temps simulé. Ces
+        simulations
+        peuvent nous aider à mieux comprendre comment certaines parties du travail cérébral, mais ils prennent beaucoup
+        de
+        temps et coûtent cher en termes de calcul.
+    </p>
+    <p>
+        Le coût de calcul comporte deux composantes principales : la taille du domaine physique qui correspond au nombre
+        d'équations dans le système et au nombre de fois que nous devons résoudre les équations. Il existe
+        un paramètre appelé le pas de temps qui contrôle se dernier : plus le pas de temps est petit, plus le nombre de
+        resolutions des
+        équations augmente.
+        En général, un système qui évolue rapidement (avec un niveau d'activité élevé) nécessite un
+        petit pas de temps pour capturer les changements avec précision.
+    </p>
+    <p>
+        Dans l'approche la plus naïve, la taille du pas est constante pour toute la simulation et est déterminée en
+        fonction
+        du niveau d'activité le plus élevé attendu à tout moment pendant la simulation. Ceci est simple à mettre en
+        œuvre,
+        mais entraîne un coût de calcul très élevé notamment quand le système évolue lentement sauf pendant une courte
+        période au sein de la simulation.
+    </p>
+    <p>
+        Une approche plus raffinée consiste à utiliser un pas de temps adaptatif. A chaque mise à jour, le pas
+        sélectionné
+        est basé sur l'évolution la plus rapide à cet instant, n'importe où dans le domaine physique. Cela peut réduire
+        le
+        coût de calcul, et ce n'est pas plus compliqué à mettre en œuvre que la première méthode. En fait,
+        comme la première méthode, il existe des paquets standards disponibles dans la plupart des bibliothèques
+        informatiques pour selectionner le meilleur pas.
+    </p>
+    <p>
+        Parfois, dans les simulations neuronales, le système d'intérêt est très vaste, mais il n'y a qu'un petit nombre
+        de
+        régions avec une activité élevée à tout moment. La plupart du système peut être simulé avec un grand pas,
+        mais comme il y a toujours certaines régions à forte activité, la simulation doit sélectionner un petit pas.
+        J'ai
+        développé un algorithme pour traiter ces cas.
+    </p>
+    <p>
+        J'ai développé un algorithme de pas de temps localement adaptatif (Locally Adaptive Time Stepping -- LATS). Dans
+        ce
+        schéma, le domaine spatial est
+        divisé en sous-domaines, et chaque sous-domaine est mis à jour avec un pas de temps adaptatif le plus approprié
+        pour le niveau local d'activité. Chaque sous-domaine évolue à son rythme, et attend que ses voisins rattrapent
+        leur
+        retard. Le défi est de maintenir le flux précis d'informations et la stabilité de la solution.
+    </p>
+    <p>
+        Grâce à l'application de techniques de décomposition de domaines, j'ai pu connecter informatiquement les
+        sous-domaines en utilisant les conditions aux limites obtenues grâce à la conservation du flux. Pour répondre
+        aux
+        problèmes de stabilité, j'ai remplacé le schéma de temps utilisé pour les simulations en neurosciences depuis
+        les années 1960 avec une méthode qui fournit une meilleure stabilité et s'est avérée mieux adaptée à
+        l'algorithme
+        LATS.
+    </p>
+    <p>
+        Évaluer l'algorithme LATS n'est pas aussi simple que d'affirmer une réduction de X % du temps de calcul. Le
+        schéma numérique sous-jacent est comparable à l'approche standard, mais le principal avantage de la méthode LATS
+        est
+        que le coût de calcul évolue avec le niveau d'activité du système, et non avec la taille physique du domaine.
+        Ainsi dans les situations où l'activité est faible dans une vaste région de calcul, la méthode LATS fournit un
+        avantage de taille et une réduction du coût de calcul en concentrant les ressources de calcul là où elles sont
+        le
+        plus
+        nécessaires. La méthode LATS a été développée dans le contexte des neurosciences computationnelles, mais est
+        applicable à tout système ayant une activité clairsemée.
+    </p>
+    <p>
+        Dans l'animation ci-dessous, une impulsion électrique est initiée dans une cellule et se propage à travers deux
+        cellules. Les couleurs représentent le niveau de la tension électrique et les sections de la cellule deviennent
+        transparentes à mesure que la taille du pas augmente.
+    </p>
+    <img src="/assets/imgs/LATSmovie.gif" alt="Impulsion électrique se propageant à travers deux cellules nerveuses.">
+</div>
