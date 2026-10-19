@@ -3,9 +3,8 @@ $('.inline-popups').magnificPopup({
   delegate: 'a',
   removalDelay: 500, //delay removal by X to allow out-animation
   callbacks: {
-    beforeOpen: function() {
-        console.log("help");
-       this.st.mainClass = this.st.el.attr('data-effect');
+    beforeOpen: function () {
+      this.st.mainClass = this.st.el.attr('data-effect');
     }
   },
   midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
@@ -18,10 +17,10 @@ $('#image-popups').magnificPopup({
   type: 'image',
   removalDelay: 500, //delay removal by X to allow out-animation
   callbacks: {
-    beforeOpen: function() {
+    beforeOpen: function () {
       // just a hack that adds mfp-anim class to markup 
-       this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-       this.st.mainClass = this.st.el.attr('data-effect');
+      this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+      this.st.mainClass = this.st.el.attr('data-effect');
     }
   },
   closeOnContentClick: true,
@@ -34,12 +33,17 @@ $('a.hinge').magnificPopup({
   mainClass: 'mfp-with-fade',
   removalDelay: 1000, //delay removal by X to allow out-animation
   callbacks: {
-    beforeClose: function() {
-        this.content.addClass('hinge');
-    }, 
-    close: function() {
-        this.content.removeClass('hinge'); 
+    beforeClose: function () {
+      this.content.addClass('hinge');
+    },
+    close: function () {
+      this.content.removeClass('hinge');
     }
   },
   midClick: true
 });
+
+$('.work-item a').on('click', function () {
+  var url = $(this).data('url')
+  $("#story-popup").load(url)
+})

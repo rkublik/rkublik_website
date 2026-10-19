@@ -1,0 +1,44 @@
+<div>
+
+    <h1>What’s the difference between a tight end and a receiver?</h1>
+
+    <p>Turns out this is the hardest question in NFL football.</p>
+
+    <img src="../assets/imgs/football.jpg" alt="Football players lined up at the start of a play">
+
+    <p>Well, maybe not, but it was the trickiest question of a project I worked on. </p>
+
+
+    <p>I helped a football analytics company automate their data labelling process. For every play, in every game, all
+        season long, the data labeling team paused the recording and identified the players on the field and what
+        position they played. Sounds easy: check the team roster, scan the numbers on the jerseys, and done. Not quite.
+        There are times when players are in a different position for a play, or you can’t see the jersey clearly. The
+        annotation manual suggests identifying players using other features than their uniform, like the color of their
+        shoelaces for example. Not so easy.</p>
+
+    <p>Life got better when the NFL started tracking the players. Now, each player’s location on the field is recorded
+        multiple times per second. My project was to take the tracking data, and the guidebook and create an algorithm
+        to label all the players, without looking at their shoelaces.</p>
+
+    <p>Once the quarterback was identified, most of the offensive positions were straightforward: the center directly
+        in front, guards and tackles on either side. Wide receivers at the outer edges. For the defensive positions, the
+        guide book described very clear regions relative to the offensive players and depth from the line of scrimmage.
+        Depths are hard to estimate on the TV, easy when you’ve got the exact positions of everyone.</p>
+
+    <p>Now, back to the tight end: not part of the offensive line, but not a wide receiver either. According to the
+        guidebook, a tight end has one hand on the ground, a wide receiver has no hands on the ground. Easy enough when
+        you can see the players. The tracking data doesn’t include hand positions though. Fortunately, we had access to
+        a full year’s worth of labeled data. Some quick analysis helped identify a threshold distance. Players within
+        this distance of the offensive linesmen were tight ends, outside wide receivers. Not a perfect solution, but the
+        client identified a threshold they were happy with.</p>
+
+    <p>In the end, the algorithm did very well. It took many iterations, comparisons to the existing labels, and
+        discussions with the client to identify some of the nuances that were tripping us up. I made a visualization
+        tool that helped immensely, and we even found some instances where the existing labels were incorrect. By the
+        time the next football season started, the client had a working solution that they trusted.</p>
+
+    <p>I had more fun on this project than I initially thought I would. I’m not really into sports, and (still) have
+        never watched a football game. It was a bit of a running joke at the beginning, but the project really wasn’t
+        about football. The project was about understanding the data, extracting the important information from it, and
+        delivering a working solution. That I can do.</p>
+</div>

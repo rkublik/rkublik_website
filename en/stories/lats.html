@@ -1,0 +1,88 @@
+<div>
+
+    <h1>Don’t wait for me, I’ll catch up</h1>
+    <p>
+        Simulations of electrical activity in nerve cells rely on solving large systems of non-linear differential
+        equations
+        thousands of times for each second of simulated time. These simulations can help us better understand how parts
+        of
+        the
+        brain work, but they are very time consuming and computationally expensive.
+    </p>
+    <p>
+        There are two main components to the computational cost: the size of the physical domain which corresponds to
+        how
+        many
+        equations are in the system; and how many times we need to solve the equations. There is a parameter referred to
+        as
+        stepsize that controls the second of these: the smaller the stepsize, the more times we need to solve the system
+        of
+        equations. In general, a system that evolves quickly (has a high activity level) requires a small time step to
+        accurately capture the changes.
+    </p>
+    <p>
+        In the most naive approach, the stepsize is constant for the entire simulation, and is determined based on the
+        highest
+        activity level expected at any time during the simulation. This is simple to implement, but leads to extra work
+        if
+        the
+        system evolves slowly except during a short time within the simulation.
+    </p>
+    <p>
+        A more refined approach is to use an adaptive time step. At each update, the stepsize selected is based on the
+        fastest
+        evolution at that instant, anywhere in the physical domain. This can reduce the computational cost, and isn’t
+        much
+        more
+        complicated to implement than the first method. In fact, like the first method, there are standard packages
+        available in
+        most computational libraries to do this.
+    </p>
+    <p>
+        Sometimes in neural simulations the system of interest is very large, but there are only a small number of
+        regions
+        with
+        high activity at any time. Most of the system could be simulated with a large stepsize, but since there is
+        always
+        some
+        region with high activity, the simulation needs to select a small stepsize. As a graduate student, I developed
+        an
+        algorithm for these cases.
+    </p>
+    <p>
+        I developed an algorithm for locally adaptive time stepping (LATS). Within this scheme, the spatial domain is
+        split
+        into
+        subdomains, and each subdomain is updated with an adaptive time step most appropriate for the local level of
+        activity.
+        Each subdomain evolves at its own pace, and waits for its neighbors to catch up. The challenge is in maintaining
+        accurate flow of information and stability of the solution.
+    </p>
+    <p>
+        Through the application of domain decomposition techniques, I was able to computationally connect the subdomains
+        through
+        boundary conditions obtained through a conservation of flux. To address the stability concerns, I replaced the
+        time
+        stepping scheme that had been used for neuroscience simulations since the 1960s with a method that provides
+        better
+        stability and proved better suited to the LATS algorithm.
+    </p>
+    <p>
+        Evaluating the LATS algorithm is not as simple as stating an X% reduction in computational time. The underlying
+        numerical scheme is comparable to the standard approach, but the major benefit of the LATS method is that the
+        computational cost scales with the level of activity in the system, rather than the physical size of the domain.
+        Thus in
+        situations where there is sparse activity in a large computational domain, the LATS method provides a
+        significant
+        reduction in computational cost by focusing computational resources where they are most needed. The LATS method
+        was
+        developed within the context of computational neuroscience, but is applicable to any system with sparse
+        activity.
+    </p>
+    <p>
+        In the animation below, an electrical impulse is initiated in a cell, and propagates through two cells. The
+        colors
+        represent the voltage, and the sections of the cell become transparent as the step size increases.
+    </p>
+    <img src="../assets/imgs/LATSmovie.gif" alt="Electrical pulse travelling through two nerve cells.">
+</div>
