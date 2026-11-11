@@ -60,13 +60,26 @@
     <!-- Main stylesheet and color file-->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="/assets/css/colors/default.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        header {
+            min-height: 50px;
+        }
+
+        footer {
+            min-height: 50px;
+        }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
-    <main>
-        <div class="page-loader">
-            <div class="loader">Loading...</div>
-        </div>
+    <header>
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -79,6 +92,12 @@
 
             </div>
         </nav>
+
+    </header>
+    <main>
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
         <div class="main">
             <section class="module" id="spirograph">
                 <div class="container">
@@ -107,10 +126,12 @@
                                                 style="color:red"> </i> Red
                                             Pen</a></li>
                                     <li><a href="#blue_pen" data-toggle="tab"><i class="fa  fa-pencil"
-                                                style="color:blue"> </i> Blue
+                                                style="color:blue">
+                                            </i> Blue
                                             Pen</a>
                                     <li><a href="#green_pen" data-toggle="tab"><i class="fa fa-pencil"
-                                                style="color:green"> </i> Green
+                                                style="color:green">
+                                            </i> Green
                                             Pen</a>
                                     </li>
                                 </ul>
@@ -171,29 +192,24 @@
                     </div>
                 </div>
             </section>
-
-
-
-            <hr class="divider-d">
-            <footer class="footer bg-dark">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="copyright font-alt">&copy; 2026&nbsp;Richard Kublik, All Rights
-                                Reserved</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="footer-social-links"><a
-                                    href="https://www.linkedin.com/company/richard-kublik/"><i
-                                        class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
+    <footer class="footer bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="copyright font-alt">&copy; 2026&nbsp;Richard Kublik, All Rights
+                        Reserved</p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="footer-social-links"><a href="https://www.linkedin.com/company/richard-kublik/"><i
+                                class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!--  
     JavaScripts
     =============================================
